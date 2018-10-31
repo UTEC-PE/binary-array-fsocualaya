@@ -7,28 +7,29 @@ class boolean {
         int size;
     
     public:
-        boolean(int size) {
-            // TODO
+        boolean(int size):size(size) {
+            array = new char[size/8+1];
         }
         
         void bitOn(int position) {
-            // TODO
+            array[position/8] |= 1 << position % 8;
         }
              
         void bitOff(int position) {
-            // TODO
+            array[position/8] &= ~(1<<position%8);
         }
              
         bool operator[](int position) {
-            // TODO
+            return (array[position/8]>>position%8)&1;
         }
     
         void clear() {    
-            // TODO
+            for(int i=0;i<size;i++)
+                array[i/8] &= 0;
         }
              
         ~boolean() {
-            // TODO
+            delete[] array;
         }
 };
 
